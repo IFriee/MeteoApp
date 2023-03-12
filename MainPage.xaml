@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MeteoApp.MainPage"
+             xmlns:local="clr-namespace:MeteoApp"
+             BackgroundColor="#121212">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="TextColor" Value="Grey"/>
+
+            </Style>
+            <Style x:Key="labelResultStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="Margin" Value="10,0,0,0"/>
+            </Style>
+            <local:LongToDateTimeConverter x:Key="longToDatetimeConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <!--  les six lignes Grid.RowDefinitions définissent six rangées 
+    avec des hauteurs différentes. Les cinq premières rangées ont une hauteur 
+    de "Auto", ce qui signifie que la hauteur de chaque rangée sera déterminée 
+    automatiquement en fonction du contenu de la cellule. La sixième rangée a une 
+    hauteur de "*", ce qui signifie que sa hauteur sera déterminée par le reste de 
+    l'espace disponible dans la grille.-->
+    
+    
+    <Grid VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image
+        Aspect="Fill"
+        HeightRequest="300"
+
+        Source="backgroundtop.png"
+        VerticalOptions="StartAndExpand"/>
+
+        <StackLayout 
+            Margin="20,50" 
+            HorizontalOptions="Start" 
+            Orientation="Vertical" 
+            Spacing="20"
+            VerticalOptions="Start">
+            <Label 
+                FontSize="16" 
+                Text="By Eliott" 
+                TextColor="White" 
+                VerticalOptions="Center"/>
+        </StackLayout>
+
+        <StackLayout 
+            Margin="0,20"
+            HorizontalOptions="Center"
+            Orientation="Vertical"
+            VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label 
+                FontSize="12" 
+                Text="{Binding Title}" 
+                TextColor="White" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+            <Label
+                FontSize="12" 
+                Text="{Binding Sys.Country, StringFormat=', {0}'}" 
+                TextColor="White" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <Image 
+                    HeightRequest="50" 
+                    Source="Soleil.png" 
+                    VerticalOptions="Center" 
+                    WidthRequest="50"/>
+                <Label 
+                    FontAttributes="Bold" 
+                    FontSize="70" 
+                    Text="{Binding Main.Temperature}" 
+                    TextColor="White" 
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="34"
+                    Text="°C"
+                    TextColor="White"
+                    VerticalOptions="Center"/>
+            </StackLayout>
+            
+                    <Label FontSize="16"
+                       HorizontalOptions="Center"
+                       Text="{Binding Weather[0].Description}"
+                       TextColor="White"/>
+                    <Label FontSize="12"
+                       HorizontalOptions="Center"
+                       Text="Juin 15,10:00"
+                       TextColor="White"/>
+
+            </StackLayout>
+        <Frame 
+                Grid.Row="1" Margin="20,-40,20,0"
+                Padding="10"
+                CornerRadius="10"
+                HasShadow="True"
+                HeightRequest="130"
+                VerticalOptions="Start">
+            <Grid Margin="0,35,0,0"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="CenterAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+               <!-- COLONNE 1 --> 
+                <StackLayout 
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Vertical"
+                    Spacing="5">
+                    <Image Source="humidity.png"
+                           HeightRequest="30"
+                           WidthRequest="30"/>
+                    <StackLayout 
+                        HorizontalOptions="CenterAndExpand"
+                        Spacing="7">
+                        <Label 
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            Text="{Binding Main.Humidity}"/>
+                        <Label
+                            FontSize="11"
+                            HorizontalOptions="Center"
+                            Text="Humiditée"
+                            TextColor="Black"/>
+                    </StackLayout>
+                </StackLayout>
+                <!-- COLONNE 2 -->
+                <StackLayout 
+                    Grid.Column="1"
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Vertical"
+                    Spacing="5">
+                    <Image Source="wind.png"
+                           HeightRequest="30"
+                           WidthRequest="30"/>
+                    <StackLayout 
+                        HorizontalOptions="CenterAndExpand"
+                        Spacing="7">
+                        <Label 
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            Text="{Binding Wind.Speed}"/>
+                        <Label
+                            FontSize="11"
+                            HorizontalOptions="Center"
+                            Text="Vent"
+                            TextColor="Black"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <!-- COLONNE 3 -->
+                <StackLayout 
+                    Grid.Column="2"
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Vertical"
+                    Spacing="5">
+                    <Image Source="atmospheric.png"
+                           HeightRequest="30"
+                           WidthRequest="30"/>
+                    <StackLayout 
+                        HorizontalOptions="CenterAndExpand"
+                        Spacing="7">
+                        <Label 
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            Text="{Binding Main.Pressure}"/>
+                        <Label
+                            FontSize="11"
+                            HorizontalOptions="Center"
+                            Text="Pression"
+                            TextColor="Black"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <!-- COLONNE 4 -->
+                <StackLayout 
+                    Grid.Column="3"
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Vertical"
+                    Spacing="5">
+                    <Image Source="cloudy.png"
+                           HeightRequest="30"
+                           WidthRequest="30"/>
+                    <StackLayout 
+                        HorizontalOptions="CenterAndExpand"
+                        Spacing="7">
+                        <Label 
+                            FontAttributes="Bold"
+                            FontSize="14"
+                            TextColor="Black"
+                            HorizontalOptions="Center"
+                            Text="{Binding Clouds.All}"/>
+                        <Label
+                            FontSize="11"
+                            HorizontalOptions="Center"
+                            Text="Nuageux"
+                            TextColor="Black"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </Frame>
+        <StackLayout Grid.Row="2"
+                     Margin="20,40,0,60" 
+                     Orientation="Vertical" 
+                     Spacing="20">
+            <!-- LIGNE 1-->
+            <StackLayout 
+                Orientation="Horizontal" 
+                Spacing="40">
+                <Label 
+                    FontAttributes="Bold" 
+                    FontSize="Small" 
+                    Text="Lever du soleil"
+                    TextColor="White"
+                    VerticalOptions="Center"/>
+                <Label 
+                    FontSize="15" 
+                    Text="{Binding Sys.Sunrise,Converter={StaticResource longToDatetimeConverter}}"
+                    TextColor="White"
+                    VerticalOptions="Center"/>
+            </StackLayout>
+
+            <!-- LIGNE 2-->
+            <StackLayout 
+                Grid.Row="1"
+                Orientation="Horizontal" 
+                Spacing="40">
+                <Label 
+                    FontAttributes="Bold" 
+                    FontSize="Small" 
+                    Text="Couché du soleil"
+                    TextColor="White"
+                    VerticalOptions="Center"/>
+                <Label 
+                    FontSize="15" 
+                    Text="{Binding Sys.Sunset,Converter={StaticResource longToDatetimeConverter}}"
+                    TextColor="White"
+                    VerticalOptions="Center"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout 
+            Grid.Row="3"
+            Margin="0,40,0,0"
+            Orientation="Horizontal">
+            <Entry x:Name="_cityEntry"
+                   Margin="5,0"
+                   BackgroundColor="White"
+                   TextColor="Black"
+                   CharacterSpacing="7"
+                   HorizontalTextAlignment="Center"
+                   Text="Bruxelles"
+                   VerticalOptions="Center"
+                   WidthRequest="250"/>
+            <Button 
+                BackgroundColor="Red" 
+                BorderColor="Yellow" 
+                BorderWidth="1"
+                Clicked="OnGetWeatherButtonClicked"
+                Text="Afficher"
+                />
+        </StackLayout>
+
+    </Grid>
+
+</ContentPage>
