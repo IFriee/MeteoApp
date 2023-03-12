@@ -5,16 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MeteoApp"
     Shell.FlyoutBehavior="Disabled">
-    <FlyoutItem Title="Cats">
 
-        <Tab>
+    <Tab>
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
         </Tab>
-    </FlyoutItem>
-    <FlyoutItem Title="Dogs">
-        <ShellContent
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-    </FlyoutItem>
 
 </Shell>

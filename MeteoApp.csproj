@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\actualise.png" />
 	  <None Remove="Resources\Images\atmospheric.png" />
 	  <None Remove="Resources\Images\BackgroundTop.png" />
 	  <None Remove="Resources\Images\cloudy.png" />

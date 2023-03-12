@@ -1,0 +1,8 @@
+﻿Scénario de test 1 : Vérifier que l'application peut se connecter à l'API de météo et obtenir les données de météo pour une ville donnée.
+
+Scénario de test 2 : Vérifier que les données de météo sont affichées correctement dans l'interface utilisateur de l'application.
+
+Scénario de test 3 : Vérifier que l'application peut afficher les données de météo pour différentes villes.
+
+
+

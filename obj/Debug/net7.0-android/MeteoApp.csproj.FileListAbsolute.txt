@@ -1078,3 +1078,4 @@ C:\Users\Eliott\Desktop\BAC INFO\Programation orientée objet\Examen\App_Meteo\e
 C:\Users\Eliott\Desktop\BAC INFO\Programation orientée objet\Examen\App_Meteo\exam_csharp\MeteoApp\MeteoApp\obj\Debug\net7.0-android\lp\9\jl\files.cache
 C:\Users\Eliott\Desktop\BAC INFO\Programation orientée objet\Examen\App_Meteo\exam_csharp\MeteoApp\MeteoApp\obj\Debug\net7.0-android\MeteoApp.dll
 C:\Users\Eliott\Desktop\BAC INFO\Programation orientée objet\Examen\App_Meteo\exam_csharp\MeteoApp\MeteoApp\obj\Debug\net7.0-android\MeteoApp.pdb
+C:\Users\Eliott\source\repos\MeteoApp\MeteoApp\obj\Debug\net7.0-android\resizetizer\r\drawable\actualise.png

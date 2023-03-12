@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
+
+//class des données renvoyées par l'API
 namespace MeteoApp
 {
     public class WeatherData
