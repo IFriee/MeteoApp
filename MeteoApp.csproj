@@ -53,6 +53,8 @@
 	  <None Remove="Resources\Images\atmospheric.png" />
 	  <None Remove="Resources\Images\BackgroundTop.png" />
 	  <None Remove="Resources\Images\cloudy.png" />
+	  <None Remove="Resources\Images\delete.png" />
+	  <None Remove="Resources\Images\favori.png" />
 	  <None Remove="Resources\Images\humidity.png" />
 	  <None Remove="Resources\Images\soleil.png" />
 	  <None Remove="Resources\Images\wind.png" />
@@ -61,6 +63,13 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="FavoriteCitiesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

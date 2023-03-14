@@ -24,6 +24,8 @@
     </ContentPage.Resources>
     
     
+    
+ 
     <!--  les six lignes Grid.RowDefinitions définissent six rangées 
     avec des hauteurs différentes. Les cinq premières rangées ont une hauteur 
     de "Auto", ce qui signifie que la hauteur de chaque rangée sera déterminée 
@@ -32,6 +34,9 @@
     l'espace disponible dans la grille.-->
 
     <ScrollView>
+
+
+
         <Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="800"/>
@@ -41,6 +46,19 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
+
+            <StackLayout 
+            Margin="15,50" 
+            Orientation="Horizontal" 
+            HorizontalOptions="Start"
+            Spacing="20"
+            VerticalOptions="Start">
+                <ImageButton Source="favori.png"
+                             HeightRequest="30"
+                             WidthRequest="30"
+                             Clicked="OnFavoriteCitiesButtonClicked"/>
+            </StackLayout>
 
             <StackLayout 
             Margin="20,50" 
@@ -246,7 +264,7 @@
                         </StackLayout>
                     </StackLayout>
 
-            <StackLayout Grid.Row="2"
+                    <StackLayout Grid.Row="2"
                      Margin="20,40,0,60" 
                      Orientation="Vertical" 
                      Spacing="20">
@@ -263,10 +281,10 @@
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                                 Padding="20,0,0,50"/>
-                           
+
                         </StackLayout>
 
-                                <!-- LIGNE 1-->
+                        <!-- LIGNE 1-->
                         <StackLayout 
                         Orientation="Horizontal" 
                         Spacing="40">
@@ -342,11 +360,12 @@
                             <Label FontAttributes="Bold" FontSize="Small" Text="Vitesse du vent" TextColor="White" VerticalOptions="Center"/>
                             <Label FontSize="15" Text="{Binding Wind.Speed, StringFormat='{0} m/s'}" TextColor="White" VerticalOptions="Center"/>
                         </StackLayout>
-
                     </StackLayout>
-                    
-                
+
                 </Grid>
+
+                
+                
             </Frame>
 
             <StackLayout 
@@ -361,7 +380,7 @@
                 VerticalOptions="Center"/>
             </StackLayout>
 
-
+          
 
 
 

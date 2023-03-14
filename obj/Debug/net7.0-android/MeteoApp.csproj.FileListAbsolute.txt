@@ -1079,3 +1079,11 @@ C:\Users\Eliott\Desktop\BAC INFO\Programation orientée objet\Examen\App_Meteo\e
 C:\Users\Eliott\Desktop\BAC INFO\Programation orientée objet\Examen\App_Meteo\exam_csharp\MeteoApp\MeteoApp\obj\Debug\net7.0-android\MeteoApp.dll
 C:\Users\Eliott\Desktop\BAC INFO\Programation orientée objet\Examen\App_Meteo\exam_csharp\MeteoApp\MeteoApp\obj\Debug\net7.0-android\MeteoApp.pdb
 C:\Users\Eliott\source\repos\MeteoApp\MeteoApp\obj\Debug\net7.0-android\resizetizer\r\drawable\actualise.png
+C:\Users\Eliott\source\repos\MeteoApp\MeteoApp\obj\Debug\net7.0-android\resizetizer\r\drawable\favori.png
+C:\Users\Eliott\source\repos\MeteoApp\MeteoApp\obj\Debug\net7.0-android\resizetizer\r\drawable\delete.png
+C:\Users\Eliott\source\repos\MeteoApp\MeteoApp\obj\Debug\net7.0-android\android\assets\SQLite-net.dll
+C:\Users\Eliott\source\repos\MeteoApp\MeteoApp\obj\Debug\net7.0-android\android\assets\SQLitePCLRaw.batteries_v2.dll
+C:\Users\Eliott\source\repos\MeteoApp\MeteoApp\obj\Debug\net7.0-android\android\assets\SQLitePCLRaw.core.dll
+C:\Users\Eliott\source\repos\MeteoApp\MeteoApp\obj\Debug\net7.0-android\android\assets\SQLitePCLRaw.lib.e_sqlite3.android.dll
+C:\Users\Eliott\source\repos\MeteoApp\MeteoApp\obj\Debug\net7.0-android\android\assets\SQLitePCLRaw.nativelibrary.dll
+C:\Users\Eliott\source\repos\MeteoApp\MeteoApp\obj\Debug\net7.0-android\android\assets\SQLitePCLRaw.provider.e_sqlite3.dll

@@ -2,10 +2,13 @@
 
 public partial class App : Application
 {
-	public App()
+    public static List<string> FavoriteCities { get; set; } = new List<string>();
+
+    public App()
 	{
 		InitializeComponent();
 
 		MainPage = new AppShell();
 	}
+
 }

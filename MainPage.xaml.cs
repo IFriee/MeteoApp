@@ -35,6 +35,11 @@
 
             return requestUri;
         }
+        //Bouton vers favoritecitypage
+        private async void OnFavoriteCitiesButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new FavoriteCitiesPage());
+        }
+
     }
 }
-
