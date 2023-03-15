@@ -60,19 +60,7 @@
                              WidthRequest="30"
                              Clicked="OnFavoriteCitiesButtonClicked"/>
             
-                <Entry x:Name="_cityEntry"
-                   Margin="5,0"
-                   TextColor="White"
-                   HorizontalTextAlignment="Center"
-                   Placeholder="Votre ville"
-                   PlaceholderColor="grey"
-                   VerticalOptions="Center"
-                   WidthRequest="250"/>
                 
-                <ImageButton Source="actualise.png"
-                             HeightRequest="30"
-                             WidthRequest="30"
-                             Clicked="OnGetWeatherButtonClicked"/>
 
             </StackLayout>
             <StackLayout 

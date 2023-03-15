@@ -96,6 +96,7 @@ public class MonoPackageManager_Resources {
 		"Xamarin.AndroidX.ViewPager.dll",
 		"Xamarin.AndroidX.ViewPager2.dll",
 		"Xamarin.AndroidX.Window.dll",
+		"Xamarin.Essentials.dll",
 		"Xamarin.Google.Android.Material.dll",
 		"Xamarin.Google.Crypto.Tink.Android.dll",
 		"Xamarin.Google.Guava.ListenableFuture.dll",
