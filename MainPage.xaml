@@ -4,7 +4,6 @@
              x:Class="MeteoApp.MainPage"
              xmlns:local="clr-namespace:MeteoApp"
              BackgroundColor="#121212"
-             BackgroundImageSource="backgroundtop.png"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
          >
  
@@ -38,6 +37,10 @@
 
 
         <Grid VerticalOptions="FillAndExpand">
+            
+            
+            
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="800"/>
                 <RowDefinition Height="Auto"/>
@@ -47,7 +50,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-
+            <!--BACKGROUND IMAGE-->
+            <Image x:Name="BackgroundImage" Aspect="AspectFill" Opacity="0.5" />
 
             <StackLayout 
             Margin="20,50" 
