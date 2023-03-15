@@ -7,7 +7,7 @@
 
             <StackLayout Orientation="Horizontal" Margin="10" HorizontalOptions="Center">
                 <Entry x:Name="_favoritecityEntry" Placeholder="Nom de la ville" WidthRequest="150" />
-                <Button Text="Ajouter" Clicked="OnAddButtonClicked" Margin="10,0" />
+                <Button Text="Ajouter" Clicked="OnAddButtonClicked" Margin="10,0" BackgroundColor="Transparent" />
             </StackLayout>
 
 
@@ -18,8 +18,8 @@
                             <StackLayout Orientation="Horizontal" Padding="3">
                                 <Label Text="{Binding Name}" FontSize="Medium" VerticalOptions="Center" />
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                                    <Button TextColor="White" Text="Modifier" Clicked="OnEditButtonClicked" BindingContext="{Binding .}" Margin="5,0,5,0"  BackgroundColor="DarkOrange" FontSize="12" FontAttributes="Bold"/>
-                                    <Button Text="Supprimer" TextColor="White" Clicked="OnDeleteButtonClicked" BindingContext="{Binding .}"  Margin="5,0,5,0"  BackgroundColor="DarkRed" FontSize="12" FontAttributes="Bold"/>
+                                    <Button TextColor="White" Text="Modifier" Clicked="OnEditButtonClicked" BindingContext="{Binding .}" Margin="5,0,5,0"  BackgroundColor="Transparent" FontSize="12" FontAttributes="Bold"/>
+                                    <Button Text="Supprimer" TextColor="White" Clicked="OnDeleteButtonClicked" BindingContext="{Binding .}"  Margin="5,0,5,0"  BackgroundColor="Transparent" FontSize="12" FontAttributes="Bold"/>
 
                                 </StackLayout>
                             </StackLayout>

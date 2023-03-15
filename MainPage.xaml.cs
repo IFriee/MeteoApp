@@ -47,11 +47,20 @@
 
             return requestUri;
         }
-        //Bouton vers favoritecitypage
+
+        private void OnCitySelected(WeatherData weatherData)
+        {
+            SetWeatherData(weatherData);
+        }
+
+        // Bouton vers favoritecitypage
         private async void OnFavoriteCitiesButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new FavoriteCitiesPage());
+            var favoriteCitiesPage = new FavoriteCitiesPage();
+            favoriteCitiesPage.CitySelected += OnCitySelected;
+            await Navigation.PushAsync(favoriteCitiesPage);
         }
+
 
     }
 }

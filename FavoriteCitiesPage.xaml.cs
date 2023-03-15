@@ -9,6 +9,8 @@ namespace MeteoApp
 
         public ObservableCollection<FavoriteCity> FavoriteCities { get; set; }
         public FavoriteCity CityToUpdate { get; set; }
+        public delegate void CitySelectedHandler(WeatherData weatherData);
+        public event CitySelectedHandler CitySelected;
 
         public FavoriteCitiesPage()
         {
@@ -118,12 +120,13 @@ namespace MeteoApp
                 }
                 else
                 {
-                    var mainPage = new MainPage();
-                    mainPage.SetWeatherData(weatherData);
-                    await Navigation.PushAsync(mainPage);
+                    // Déclenche l'événement CitySelected avec les données météorologiques
+                    CitySelected?.Invoke(weatherData);
+                    await Navigation.PopAsync(); // Ferme la page FavoriteCitiesPage
                 }
             }
         }
+
 
 
 
