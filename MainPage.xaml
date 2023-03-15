@@ -48,17 +48,6 @@
             </Grid.RowDefinitions>
 
 
-            <StackLayout 
-            Margin="15,50" 
-            Orientation="Horizontal" 
-            HorizontalOptions="Start"
-            Spacing="20"
-            VerticalOptions="Start">
-                <ImageButton Source="favori.png"
-                             HeightRequest="30"
-                             WidthRequest="30"
-                             Clicked="OnFavoriteCitiesButtonClicked"/>
-            </StackLayout>
 
             <StackLayout 
             Margin="20,50" 
@@ -66,12 +55,17 @@
             HorizontalOptions="Center"
             Spacing="20"
             VerticalOptions="Start">
+                <ImageButton Source="favori.png"
+                             HeightRequest="30"
+                             WidthRequest="30"
+                             Clicked="OnFavoriteCitiesButtonClicked"/>
             
                 <Entry x:Name="_cityEntry"
                    Margin="5,0"
                    TextColor="White"
                    HorizontalTextAlignment="Center"
-                   Text="Wavre"
+                   Placeholder="Votre ville"
+                   PlaceholderColor="grey"
                    VerticalOptions="Center"
                    WidthRequest="250"/>
                 

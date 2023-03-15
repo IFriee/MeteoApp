@@ -25,8 +25,15 @@
                 // Appel de l'API pour obtenir les données de météo
                 WeatherData weatherData = await _restService.GetWeatherData(GenerateRequestURL(Constants.OpenWeatherMapEndpoint));
 
-                // Met à jour le contexte de liaison de données
-                BindingContext = weatherData;
+                if (weatherData == null)
+                {
+                    await DisplayAlert("Erreur", "Impossible de récupérer les données météorologiques pour la ville saisie. Vérifiez si le nom de la ville est correct.", "OK");
+                }
+                else
+                {
+                    // Met à jour le contexte de liaison de données
+                    BindingContext = weatherData;
+                }
             }
         }
 

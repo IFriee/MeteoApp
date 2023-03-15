@@ -8,6 +8,7 @@ namespace MeteoApp
         RestService _restService;
 
         public ObservableCollection<FavoriteCity> FavoriteCities { get; set; }
+        public FavoriteCity CityToUpdate { get; set; }
 
         public FavoriteCitiesPage()
         {
@@ -35,17 +36,33 @@ namespace MeteoApp
             BindingContext = this;
         }
 
-        // Méthode pour ajouter une ville favorite
+        // Méthode pour ajouter ou mettre à jour une ville favorite
         async void OnAddButtonClicked(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(_favoritecityEntry.Text))
             {
-                var favoriteCity = new FavoriteCity { Name = _favoritecityEntry.Text };
-                await _database.SaveFavoriteCityAsync(favoriteCity);
-                FavoriteCities.Add(favoriteCity);
+                if (CityToUpdate != null)
+                {
+                    // Met à jour le nom de la ville favorite existante
+                    int index = FavoriteCities.IndexOf(CityToUpdate);
+                    CityToUpdate.Name = _favoritecityEntry.Text;
+                    await _database.SaveFavoriteCityAsync(CityToUpdate);
+                    FavoriteCities[index] = CityToUpdate;
+                    CityToUpdate = null;
+                }
+                else
+                {
+                    // Ajoute une nouvelle ville favorite
+                    var favoriteCity = new FavoriteCity { Name = _favoritecityEntry.Text };
+                    await _database.SaveFavoriteCityAsync(favoriteCity);
+                    FavoriteCities.Add(favoriteCity);
+                }
+
                 _favoritecityEntry.Text = string.Empty;
             }
         }
+
+
 
         // Méthode pour modifier une ville favorite
         async void OnEditButtonClicked(object sender, EventArgs e)
@@ -55,18 +72,15 @@ namespace MeteoApp
 
             if (favoriteCity != null)
             {
-                int index = FavoriteCities.IndexOf(favoriteCity);
-                string newCity = _favoritecityEntry.Text;
+                // Définit la valeur du champ _favoritecityEntry sur le nom de la ville favorite actuelle
+                _favoritecityEntry.Text = favoriteCity.Name;
 
-                if (index >= 0 && !string.IsNullOrWhiteSpace(newCity))
-                {
-                    favoriteCity.Name = newCity;
-                    await _database.SaveFavoriteCityAsync(favoriteCity);
-                    FavoriteCities[index] = favoriteCity;
-                    _favoritecityEntry.Text = string.Empty;
-                }
+                // Définit la propriété CityToUpdate
+                CityToUpdate = favoriteCity;
             }
         }
+
+
 
         // Méthode pour supprimer une ville favorite
         async void OnDeleteButtonClicked(object sender, EventArgs e)
@@ -97,11 +111,20 @@ namespace MeteoApp
             if (selectedCity != null)
             {
                 var weatherData = await _restService.GetWeatherData(GenerateRequestURL(Constants.OpenWeatherMapEndpoint, selectedCity.Name));
-                var mainPage = new MainPage();
-                mainPage.SetWeatherData(weatherData);
-                await Navigation.PushAsync(mainPage);
+
+                if (weatherData == null)
+                {
+                    await DisplayAlert("Erreur", "Impossible de récupérer les données météorologiques pour la ville sélectionnée. Vérifiez si le nom de la ville est correct.", "OK");
+                }
+                else
+                {
+                    var mainPage = new MainPage();
+                    mainPage.SetWeatherData(weatherData);
+                    await Navigation.PushAsync(mainPage);
+                }
             }
         }
+
 
 
 
