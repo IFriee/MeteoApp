@@ -10,6 +10,11 @@
             InitializeComponent();
             _restService = new RestService(); // Création d'une instance de RestService
         }
+        public void SetWeatherData(WeatherData weatherData)
+        {
+            BindingContext = weatherData;
+        }
+
 
         // Méthode appelée lorsque l'utilisateur clique sur le bouton "Afficher"
         async void OnGetWeatherButtonClicked(object sender, EventArgs e)

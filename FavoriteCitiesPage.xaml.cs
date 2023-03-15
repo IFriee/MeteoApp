@@ -1,58 +1,112 @@
 using System.Collections.ObjectModel;
 
-namespace MeteoApp;
-
-public partial class FavoriteCitiesPage : ContentPage
+namespace MeteoApp
 {
-    public ObservableCollection<string> FavoriteCities { get; set; }
-
-    public FavoriteCitiesPage()
+    public partial class FavoriteCitiesPage : ContentPage
     {
-        InitializeComponent();
-        FavoriteCities = new ObservableCollection<string>(App.FavoriteCities);
-        BindingContext = this;
-    }
+        private FavoriteCityDatabase _database;
+        RestService _restService;
 
-    void OnAddButtonClicked(object sender, EventArgs e)
-    {
-        if (!string.IsNullOrWhiteSpace(_favoritecityEntry.Text))
+        public ObservableCollection<FavoriteCity> FavoriteCities { get; set; }
+
+        public FavoriteCitiesPage()
         {
-            FavoriteCities.Add(_favoritecityEntry.Text);
-            App.FavoriteCities = new List<string>(FavoriteCities);
-            _favoritecityEntry.Text = string.Empty;
+            // Initialise les composants de la page
+            InitializeComponent();
+
+            // Construit le chemin d'accès à la base de données SQLite en utilisant le dossier d'application local
+            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "weather.db3");
+            // Crée une nouvelle instance de la base de données FavoriteCityDatabase en utilisant le chemin d'accès spécifié
+            _database = new FavoriteCityDatabase(dbPath);
+
+            // Appelle la méthode pour charger les villes favorites de manière asynchrone
+            LoadFavoriteCitiesAsync();
+
+            _restService = new RestService(); // Ajoutez cette ligne pour initialiser _restService
         }
-    }
 
-    void OnEditButtonClicked(object sender, EventArgs e)
-    {
-        var button = sender as Button;
-        var city = button?.BindingContext as string;
-
-        if (city != null)
+        private async void LoadFavoriteCitiesAsync()
         {
-            int index = FavoriteCities.IndexOf(city);
-            string newCity = _favoritecityEntry.Text;
+            // Récupère la liste des villes favorites de manière asynchrone depuis la base de données
+            var favoriteCitiesList = await _database.GetFavoriteCitiesAsync();
+            // Crée une nouvelle ObservableCollection à partir de la liste des villes favorites récupérées
+            FavoriteCities = new ObservableCollection<FavoriteCity>(favoriteCitiesList);
+            // Définit le contexte de liaison (BindingContext) pour la page en cours
+            BindingContext = this;
+        }
 
-            if (index >= 0 && !string.IsNullOrWhiteSpace(newCity))
+        // Méthode pour ajouter une ville favorite
+        async void OnAddButtonClicked(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(_favoritecityEntry.Text))
             {
-                FavoriteCities[index] = newCity;
-                App.FavoriteCities = new List<string>(FavoriteCities);
+                var favoriteCity = new FavoriteCity { Name = _favoritecityEntry.Text };
+                await _database.SaveFavoriteCityAsync(favoriteCity);
+                FavoriteCities.Add(favoriteCity);
                 _favoritecityEntry.Text = string.Empty;
             }
         }
-    }
 
-    void OnDeleteButtonClicked(object sender, EventArgs e)
-    {
-        var button = sender as Button;
-        var city = button?.BindingContext as string;
-
-        if (city != null)
+        // Méthode pour modifier une ville favorite
+        async void OnEditButtonClicked(object sender, EventArgs e)
         {
-            FavoriteCities.Remove(city);
-            App.FavoriteCities = new List<string>(FavoriteCities);
+            var button = sender as Button;
+            var favoriteCity = button?.BindingContext as FavoriteCity;
+
+            if (favoriteCity != null)
+            {
+                int index = FavoriteCities.IndexOf(favoriteCity);
+                string newCity = _favoritecityEntry.Text;
+
+                if (index >= 0 && !string.IsNullOrWhiteSpace(newCity))
+                {
+                    favoriteCity.Name = newCity;
+                    await _database.SaveFavoriteCityAsync(favoriteCity);
+                    FavoriteCities[index] = favoriteCity;
+                    _favoritecityEntry.Text = string.Empty;
+                }
+            }
         }
+
+        // Méthode pour supprimer une ville favorite
+        async void OnDeleteButtonClicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var favoriteCity = button?.BindingContext as FavoriteCity;
+
+            if (favoriteCity != null)
+            {
+                await _database.DeleteFavoriteCityAsync(favoriteCity);
+                FavoriteCities.Remove(favoriteCity);
+            }
+        }
+
+        string GenerateRequestURL(string endPoint, string cityName)
+        {
+            string requestUri = endPoint;
+            requestUri += $"?q={cityName}"; // Ajoute la ville à la requête
+            requestUri += "&units=metric"; // Définit l'unité de mesure en Celsius
+            requestUri += $"&APPID={Constants.OpenWeatherMapAPIKey}"; // Ajoute la clé API
+
+            return requestUri;
+        }
+
+        async void OnFavoriteCityTapped(object sender, ItemTappedEventArgs e)
+        {
+            var selectedCity = e.Item as FavoriteCity;
+            if (selectedCity != null)
+            {
+                var weatherData = await _restService.GetWeatherData(GenerateRequestURL(Constants.OpenWeatherMapEndpoint, selectedCity.Name));
+                var mainPage = new MainPage();
+                mainPage.SetWeatherData(weatherData);
+                await Navigation.PushAsync(mainPage);
+            }
+        }
+
+
+
     }
 }
 
-   
+
+

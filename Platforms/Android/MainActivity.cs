@@ -8,3 +8,5 @@ namespace MeteoApp;
 public class MainActivity : MauiAppCompatActivity
 {
 }
+
+
