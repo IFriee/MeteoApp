@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using Newtonsoft.Json; // Utilisation de la bibliothèque Newtonsoft.Json pour la désérialisation JSON.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,23 +8,30 @@ using System.Threading.Tasks;
 
 namespace MeteoApp
 {
+    // Classe RestService qui permet de communiquer avec un serveur distant via des requêtes HTTP.
     public class RestService
     {
-        HttpClient client;
-       //constructeur de la classe RestService 
+        HttpClient client; // HttpClient pour effectuer des requêtes HTTP.
+
+        // Constructeur de la classe RestService qui initialise le client HTTP.
         public RestService()
         {
             client = new HttpClient();
         }
-        // envoit requete HTTP à un serv (https://openweathermap.org/) Si true, deserialise en objet WheatherData avec Nugget Newton (Json)
-        //Sinon, return Null
-        public async Task<WeatherData> GetWeatherData(string query){
+
+        // Méthode asynchrone qui envoie une requête HTTP à un serveur distant (https://openweathermap.org/).
+        // Si la requête réussit (code de statut 2xx), désérialise la réponse JSON en un objet WeatherData avec la bibliothèque Newtonsoft.Json.
+        // Sinon, retourne null.
+        public async Task<WeatherData> GetWeatherData(string query)
+        {
             WeatherData weatherData = null;
 
             try
             {
                 var response = await client.GetAsync(query);
-                if (response.IsSuccessStatusCode) {
+
+                if (response.IsSuccessStatusCode)
+                {
                     var content = await response.Content.ReadAsStringAsync();
                     weatherData = JsonConvert.DeserializeObject<WeatherData>(content);
                 }
@@ -34,8 +41,8 @@ namespace MeteoApp
                 Debug.WriteLine(ex.Message);
                 throw;
             }
-            return weatherData;
 
+            return weatherData;
         }
     }
 }
