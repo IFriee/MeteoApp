@@ -10819,12 +10819,13 @@ public final class R {
     public static final int notification_template_icon_low_bg=0x7f0700d4;
     public static final int notification_tile_bg=0x7f0700d5;
     public static final int notify_panel_notification_icon_bg=0x7f0700d6;
-    public static final int soleil=0x7f0700d7;
-    public static final int splash=0x7f0700d8;
-    public static final int test_level_drawable=0x7f0700d9;
-    public static final int tooltip_frame_dark=0x7f0700da;
-    public static final int tooltip_frame_light=0x7f0700db;
-    public static final int wind=0x7f0700dc;
+    public static final int scrollup=0x7f0700d7;
+    public static final int soleil=0x7f0700d8;
+    public static final int splash=0x7f0700d9;
+    public static final int test_level_drawable=0x7f0700da;
+    public static final int tooltip_frame_dark=0x7f0700db;
+    public static final int tooltip_frame_light=0x7f0700dc;
+    public static final int wind=0x7f0700dd;
   }
   public static final class id {
     public static final int ALT=0x7f080000;
