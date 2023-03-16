@@ -20,8 +20,6 @@ namespace MeteoApp
             // activer l'accès multi-thread à la base de données
             SQLite.SQLiteOpenFlags.SharedCache;
 
-
-        //__________________OPENWEATHERAPI_____________
         public static string DatabasePath =>
             Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
 
@@ -30,11 +28,5 @@ namespace MeteoApp
 
         // La clé API OpenWeatherMap utilisée pour authentifier les requêtes.
         public static string OpenWeatherMapAPIKey = "7644931008d77c7f5c8fd01185d87427";
-
-
-
-        //_________________UNSPASHAPI________________
-            public const string UnsplashAPIKey = "THnxJzTnq6OYq5SG_xzUgtiGMPCJPVa8g5DBJVop_C4";
-       
     }
 }

@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using XamarinEssentials = Xamarin.Essentials;
 
@@ -21,7 +20,6 @@ namespace MeteoApp
         {
             BindingContext = weatherData;
         }
-
 
         // Génère l'URL de la requête pour l'API OpenWeatherMap
         string GenerateRequestURL(string endPoint, double latitude, double longitude)
@@ -79,8 +77,6 @@ namespace MeteoApp
                 WeatherData weatherData = await _restService.GetWeatherData(GenerateRequestURL(Constants.OpenWeatherMapEndpoint, location.Latitude, location.Longitude));
                 BindingContext = weatherData;
             }
-            // Après avoir mis à jour les données météorologiques
-            UpdateBackgroundImage();
         }
 
         // Méthode appelée lorsque l'utilisateur clique sur le bouton "Afficher"
@@ -110,7 +106,6 @@ namespace MeteoApp
         private void OnCitySelected(WeatherData weatherData)
         {
             SetWeatherData(weatherData);
-            UpdateBackgroundImage();
         }
 
         // Bouton vers favoritecitypage
@@ -120,36 +115,6 @@ namespace MeteoApp
             favoriteCitiesPage.CitySelected += OnCitySelected;
             await Navigation.PushAsync(favoriteCitiesPage);
         }
-
-
-        private async void UpdateBackgroundImage()
-        {
-            var unsplashService = new UnsplashService();
-            string query = GetWeatherQuery(); // Cette fonction doit retourner un terme de recherche en fonction des conditions météorologiques actuelles
-            string imageUrl = await unsplashService.GetImageUrlAsync(query);
-
-            if (!string.IsNullOrEmpty(imageUrl))
-            {
-                BackgroundImage.Source = imageUrl;
-            }
-        }
-
-
-
-        private string GetWeatherQuery()
-        {
-            WeatherData weatherData = (WeatherData)BindingContext;
-            if (weatherData != null)
-            {
-                return weatherData.Title; // Retourne le nom de la ville
-            }
-
-            return "city";
-        }
-
-
-
-
 
 
     }

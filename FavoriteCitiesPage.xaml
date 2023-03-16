@@ -4,12 +4,10 @@
              x:Class="MeteoApp.FavoriteCitiesPage">
     <ContentPage.Content>
         <StackLayout>
-            
-            
-            
+
             <StackLayout Orientation="Horizontal" Margin="10" HorizontalOptions="Center">
                 <Entry x:Name="_favoritecityEntry" Placeholder="Nom de la ville" WidthRequest="150" />
-                <Button Text="Ajouter" TextColor="White" Clicked="OnAddButtonClicked" Margin="10,0" BackgroundColor="Transparent" />
+                <Button Text="Ajouter" Clicked="OnAddButtonClicked" Margin="10,0" BackgroundColor="Transparent" />
             </StackLayout>
 
 
